@@ -2,6 +2,8 @@
 
 A small observability dashboard that monitors `wc_ajax=add_to_cart` request latency using Cloudflare's GraphQL Analytics API. Shows request counts and latency (median, p95) over the last 24h, refreshing automatically every 5 minutes.
 
+![Screenshot](screenshot.png)
+
 ## Structure
 
 ```
