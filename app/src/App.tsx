@@ -23,20 +23,10 @@ function App() {
 	const getDelta = (delta?: number, pct?: number) => {
 		if (!delta || !pct) return "";
 
-		if (delta > 0 && Math.abs(delta) < 50) {
-			return `▲ +${delta} ms (+${pct}%)`;
-		} else {
-			return `▼ ${delta} ms (${pct}%)`;
-		}
+		return delta > 0 ? `▲ +${delta} ms (+${pct}%)` : `▼ ${delta} ms (${pct}%)`;
 	};
 	const getDeltaClassName = (delta?: number) =>
-		delta
-			? Math.abs(delta) < 50
-				? "up"
-				: Math.abs(delta) > 50
-					? "down"
-					: ""
-			: "";
+		delta === undefined ? "" : delta < 0 ? "down" : delta > 0 ? "up" : "";
 
 	return (
 		<>
