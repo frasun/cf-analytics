@@ -37,7 +37,7 @@ The Vite dev server proxies `/api/*` requests to `localhost:9000`, so run both s
 
 ## Environment Variables
 
-The PHP endpoint reads config from a `.env` file located **one directory above the webroot** (not inside `api/`, and never committed to the repo). See `.env.example` for the required keys.
+The PHP endpoint reads config from a `.env` file located **one directory above the webroot**.
 
 | Key           | Description                                     |
 | ------------- | ----------------------------------------------- |
@@ -49,6 +49,5 @@ The PHP endpoint reads config from a `.env` file located **one directory above t
 ## Deployment
 
 1. `cd app && npm run build`
-2. Upload `app/dist/` contents to the target subfolder on the server
-3. Upload `api/cf.php` alongside it
-4. Place the `.env` file one directory above webroot on the server
+2. Upload `app/dist/` and `api/cf.php` contents to the target subfolder on the server
+3. Place the `.env` file one directory above webroot on the server
