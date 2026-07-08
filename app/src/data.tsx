@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import type { StatusValue } from "./constants";
 import { Status } from "./constants";
 
-export type CFData = {
-	clientRequestQuery: string;
+export interface CFData {
 	datetime: string;
 	originResponseDurationMs: number;
 };
@@ -35,15 +34,13 @@ export default function useCFData(): CFDataHook {
 				throw new Error(`HTTP ${res.status}`);
 			}
 
-			const json = await res.json();
+			const data = await res.json();
 
-			if (json.errors?.length) {
-				throw new Error(json.errors.map((e: Error) => e.message).join("; "));
+			if (data.errors?.length) {
+				throw new Error(data.errors.map((e: Error) => e.message).join("; "));
 			}
 
-			setCfData(
-				filterData(json.data?.viewer?.zones?.[0]?.httpRequestsAdaptive),
-			);
+			setCfData(data);
 			setIsFetching(Status.OK);
 			setCfError(null);
 		} catch (error) {
@@ -64,10 +61,3 @@ export default function useCFData(): CFDataHook {
 
 	return [isFetching, cfData, error, timestamp];
 }
-
-const filterData = (data: CFData[]) =>
-	data.filter(
-		(r) =>
-			r.clientRequestQuery === "?wc-ajax=add_to_cart" &&
-			r.originResponseDurationMs > 0,
-	);

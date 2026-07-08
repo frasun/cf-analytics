@@ -1,6 +1,8 @@
 <?php
 /**
  * Fetch analytics data from CF
+ *
+ * @package chocante-status
  */
 
 declare( strict_types=1 );
@@ -177,4 +179,11 @@ if ( ! empty( $decoded['errors'] ) ) {
 	exit;
 }
 
-echo $response;
+$request_data    = $decoded['data']['viewer']['zones'][0]['httpRequestsAdaptive'] ?? array();
+$filtered_by_atc = array_filter(
+	$request_data,
+	fn( $item ) => '?wc-ajax=add_to_cart' === $item['clientRequestQuery'] && $item['originResponseDurationMs'] > 0
+);
+$data            = array_map( fn( $item ) => array_diff_key( $item, array( 'clientRequestQuery' => '' ) ), $filtered_by_atc );
+
+echo json_encode( array_values( $data ) );
