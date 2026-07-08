@@ -12,6 +12,7 @@
 	--bad: #ef4444;
 	--mono: "JetBrains Mono", monospace;
 	--sans: "Inter", sans-serif;
+	--font-size--label: 11px;
 }
 
 *,
@@ -34,11 +35,19 @@ body {
 
 header {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	gap: 16px;
 	margin-bottom: 40px;
 	border-bottom: 1px solid var(--border);
 	padding-bottom: 20px;
+
+	aside {
+		flex-grow: 1;
+		text-align: right;
+		color: var(--muted);
+		font-size: var(--font-size--label);
+	}
 }
 
 header h1 {
@@ -54,7 +63,7 @@ header h1 span {
 
 #status-pill {
 	font-family: var(--mono);
-	font-size: 11px;
+	font-size: var(--font-size--label);
 	padding: 3px 10px;
 	border-radius: 99px;
 	background: var(--surface);
@@ -96,7 +105,7 @@ header h1 span {
 	padding: 20px 24px;
 
 	.label {
-		font-size: 11px;
+		font-size: var(--font-size--label);
 		font-weight: 600;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
@@ -144,7 +153,7 @@ header h1 span {
 }
 
 .chart-wrap h2 {
-	font-size: 11px;
+	font-size: var(--font-size--label);
 	font-weight: 600;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
@@ -170,12 +179,30 @@ canvas {
 
 #refresh-info {
 	font-family: var(--mono);
-	font-size: 11px;
+	font-size: var(--font-size--label);
 	color: var(--muted);
 }
 
-footer {
-	color: var(--muted);
-	font-size: 11px;
-	margin-top: 40px;
+.request-table {
+	width: 100%;
+	border-collapse: collapse;
+
+	td,
+	th {
+		padding: 5px;
+		border-bottom: 1px solid var(--border);
+	}
+
+	th {
+		text-align: left;
+		color: var(--muted);
+		text-transform: uppercase;
+		font-size: var(--font-size--label);
+	}
+
+	tr:hover {
+		td {
+			background-color: rgba(102, 107, 128, 0.2);
+		}
+	}
 }

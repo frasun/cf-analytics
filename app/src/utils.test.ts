@@ -132,9 +132,9 @@ describe("getATCRequests", () => {
 	});
 
 	const makeRequest = (datetime: string, ms = 100): CFData => ({
-		clientRequestQuery: "?wc_ajax=add_to_cart",
 		datetime,
 		originResponseDurationMs: ms,
+		clientCountryName: "US",
 	});
 
 	it("returns one bucket per label", () => {

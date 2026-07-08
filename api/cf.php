@@ -105,6 +105,7 @@ $body = json_encode(
 		        datetime
 		        clientRequestQuery
 		        originResponseDurationMs
+						clientCountryName
 		      }
 		    }
 		  }

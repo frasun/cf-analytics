@@ -5,7 +5,8 @@ import { Status } from "./constants";
 export interface CFData {
 	datetime: string;
 	originResponseDurationMs: number;
-};
+	clientCountryName: string;
+}
 
 type CFDataHook = [StatusValue, CFData[], string | null, string];
 

@@ -3,6 +3,7 @@ import StatusPill from "./StatusPill";
 import useCFData from "./data";
 import * as Utils from "./utils";
 import ATCChart from "./Chart";
+import ATCRequestTable from "./Table";
 
 function App() {
 	const [fetchingStatus, data, error, timestamp] = useCFData();
@@ -35,6 +36,7 @@ function App() {
 					add_to_cart <span>/ latency</span>
 				</h1>
 				<StatusPill status={fetchingStatus} />
+				<aside>Cloudflare GraphQL Analytics: {timestamp}</aside>
 			</header>
 
 			{error && <div id="error-box">{error}</div>}
@@ -60,7 +62,7 @@ function App() {
 				<ATCChart dataset={data} avg={avg24} />
 			</div>
 
-			<footer>Cloudflare GraphQL Analytics: {timestamp}</footer>
+			<ATCRequestTable data={data} />
 		</>
 	);
 }
